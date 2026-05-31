@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnify Impact — AI Adoption & Organizational Development</title>
+  <meta name="description" content="We help mission-driven non-profits and small businesses adopt AI the right way — developing your people and deploying tools that accelerate your mission.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:        #F8F5F0;
+      --charcoal:     #1F1F1F;
+      --charcoal-mid: #3D3D3D;
+      --charcoal-dim: rgba(31,31,31,0.48);
+      --green:        #2D6A4F;
+      --green-dark:   #1B4332;
+      --green-mid:    #2D6A4F;
+      --green-light:  #52B788;
+      --green-hover:  #235C42;
+      --green-glow:   rgba(45,106,79,0.15);
+      --white:        #FFFFFF;
+      --border:       rgba(31,31,31,0.10);
+      --shadow-soft:  0 2px 10px rgba(0,0,0,0.07);
+      --shadow-deep:  0 10px 28px rgba(0,0,0,0.13);
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* C — Grain texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    /* ── A — Top accent bar ── */
+    .top-accent {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green-dark) 0%, var(--green-light) 100%);
+      z-index: 300;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 3px; /* sits flush below the 3px fixed accent bar */
+      z-index: 200;
+      background: rgba(248,245,240,0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-wordmark {
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+      text-decoration: none;
+    }
+
+    .nav-wordmark .wm-small {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--charcoal-mid);
+    }
+
+    .nav-wordmark .wm-large {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--charcoal);
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2.2rem;
+      cursor: pointer;
+      border: 2px solid var(--green);
+      border-radius: 50px;
+      transition: background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+    }
+
+    .btn-solid {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--green);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .btn-solid:hover {
+        background: var(--green-hover);
+        transform: scale(1.04);
+        box-shadow: 0 0 0 7px rgba(45,106,79,0.11), 0 5px 18px rgba(45,106,79,0.22);
+      }
+      .btn-outline:hover {
+        background: var(--green);
+        color: var(--white);
+        transform: scale(1.04);
+        box-shadow: 0 0 0 7px rgba(45,106,79,0.09), 0 5px 18px rgba(45,106,79,0.18);
+      }
+    }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-decoration: none;
+      border: 1.5px solid var(--green);
+      border-radius: 50px;
+      padding: 0.5rem 1.3rem;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+
+    .nav-cta:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .nav-cta:hover {
+        background: var(--green);
+        color: var(--white);
+        transform: scale(1.04);
+        box-shadow: 0 0 0 5px rgba(45,106,79,0.10);
+      }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 1.5rem 2.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Logo mark — horizontal, true circle tight around IMPACT */
+    .logo-mark {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .lm-magnify {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 1.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--charcoal-mid);
+    }
+
+    /* Fixed square container forces perfect circle — almost touching I and T */
+    .lm-impact-ring {
+      position: relative;
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Gradient border using CSS mask technique */
+    .lm-impact-ring::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 3.5px;
+      background: linear-gradient(145deg, var(--green-dark) 0%, var(--green-light) 100%);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+    }
+
+    /* Subtle inner glow to suggest the lens */
+    .lm-impact-ring::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, rgba(45,106,79,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .lm-impact {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 2.85rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      letter-spacing: -0.01em;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-headline {
+      font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+      max-width: 720px;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--charcoal-mid);
+      max-width: 680px;
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-callout {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--charcoal);
+      max-width: 440px;
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Section atoms ── */
+    .eyebrow {
+      display: block;
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.19em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.9rem;
+    }
+
+    .section-h {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+      letter-spacing: -0.01em;
+      line-height: 1.18;
+    }
+
+    .rule {
+      width: 44px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green-dark), var(--green-light));
+      margin-top: 1.75rem;
+      border: none;
+    }
+
+    .rule-center { margin-left: auto; margin-right: auto; }
+
+    /* ── B — Scroll-triggered reveals ── */
+    .will-reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .will-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Approach (Value Prop) ── */
+    .approach {
+      background: var(--white);
+      padding: 8rem 2.5rem;
+    }
+
+    .approach-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 370px 1fr;
+      gap: 5.5rem;
+      align-items: start;
+    }
+
+    .approach-sticky {
+      position: sticky;
+      top: 6rem;
+    }
+
+    .approach-body {
+      font-size: 1.05rem;
+      color: var(--charcoal-mid);
+      line-height: 1.9;
+    }
+
+    /* ── Commitments ── */
+    .commitments {
+      padding: 8rem 2.5rem;
+    }
+
+    .commitments-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .commitments-hd {
+      text-align: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .commitments-hd .rule { margin: 1.75rem auto 0; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 3rem 2.75rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    /* Gradient accent bar animates on lift */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 0;
+      background: linear-gradient(to bottom, var(--green-dark), var(--green-light));
+      transition: height 0.35s ease;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .card:hover,
+      .card:focus-within {
+        transform: scale(1.02);
+        box-shadow: var(--shadow-deep);
+      }
+      .card:hover::after,
+      .card:focus-within::after {
+        height: 100%;
+      }
+    }
+
+    .card-eyebrow {
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--charcoal);
+      line-height: 1.3;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-body {
+      font-size: 0.95rem;
+      color: var(--charcoal-mid);
+      line-height: 1.85;
+    }
+
+    /* ── About ── */
+    .about {
+      background: var(--white);
+      padding: 8rem 2.5rem;
+    }
+
+    .about-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 5.5rem;
+      align-items: start;
+    }
+
+    .about-sticky {
+      position: sticky;
+      top: 6rem;
+    }
+
+    .about-body {
+      font-size: 1.05rem;
+      color: var(--charcoal-mid);
+      line-height: 1.9;
+    }
+
+    /* ── Contact ── */
+    .contact {
+      padding: 8rem 2.5rem;
+    }
+
+    .contact-inner {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-intro {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--charcoal-mid);
+      margin-top: 0.75rem;
+      margin-bottom: 3rem;
+    }
+
+    form {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 0.45rem; }
+
+    label {
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--charcoal);
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1.1rem;
+      outline: none;
+      border-radius: 6px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+
+    input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(45,106,79,0.10);
+    }
+
+    input::placeholder { color: rgba(31,31,31,0.28); }
+
+    .form-btn {
+      margin-top: 0.5rem;
+      width: 100%;
+      text-align: center;
+      border: none;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--charcoal);
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-email {
+      font-size: 0.85rem;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .footer-email:hover { text-decoration: underline; }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--charcoal-dim);
+    }
+
+    /* ── Hero page-load stagger ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-up {
+        opacity: 0;
+        transform: translateY(18px);
+        animation: fu 0.75s ease forwards;
+      }
+      .d1 { animation-delay: 0.05s; }
+      .d2 { animation-delay: 0.22s; }
+      .d3 { animation-delay: 0.40s; }
+      .d4 { animation-delay: 0.56s; }
+      .d5 { animation-delay: 0.70s; }
+
+      @keyframes fu {
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .approach-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .approach-sticky, .about-sticky { position: static; }
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .hero { padding: 6rem 1.5rem 5rem; }
+      .lm-magnify { font-size: 1.15rem; }
+      .lm-impact { font-size: 2.15rem; }
+      .lm-impact-ring { width: 120px; height: 120px; }
+      .logo-mark { gap: 0.6rem; }
+      .nav-inner { padding: 1rem 1.5rem; }
+      .approach, .commitments, .about, .contact { padding: 5rem 1.5rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- A — Top accent bar -->
+  <div class="top-accent" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-wordmark" aria-label="Magnify Impact home">
+        <span class="wm-small">magnify</span>
+        <span class="wm-large">IMPACT</span>
+      </a>
+      <a href="#contact" class="nav-cta">Schedule A Call</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-h1">
+      <div class="logo-mark fade-up d1" aria-hidden="true">
+        <span class="lm-magnify">magnify</span>
+        <div class="lm-impact-ring">
+          <span class="lm-impact">IMPACT</span>
+        </div>
+      </div>
+
+      <h1 id="hero-h1" class="hero-headline fade-up d2">
+        AI adoption that puts your mission and people first.
+      </h1>
+
+      <p class="hero-sub fade-up d3">
+        We help mission-driven non-profits and small businesses adopt AI the right way — understanding your organization first, developing and inspiring your teams about AI, then deploying customized tools that fit and accelerate your mission.
+      </p>
+
+      <p class="hero-callout fade-up d4">
+        We want to learn about the good work you do, and how we can help.
+      </p>
+
+      <a href="#contact" class="btn btn-solid fade-up d5">Schedule A Call</a>
+    </section>
+
+    <!-- Our Approach -->
+    <section class="approach" aria-labelledby="approach-h2">
+      <div class="approach-grid will-reveal">
+        <div class="approach-sticky">
+          <span class="eyebrow">Our Approach</span>
+          <h2 id="approach-h2" class="section-h">AI for all.<br>Right-sized for you.</h2>
+          <hr class="rule">
+        </div>
+        <div>
+          <p class="approach-body">
+            Most non-profits and small businesses do not have the resources or bandwidth to deploy AI enterprise solutions, and most AI enterprise solutions do not focus on the proper change management and organizational development needed to inspire teams. Our process starts by understanding your organization, your mission, and your people. Then we develop your leaders and team, and deploy the right tools — customized for your specific needs, not off-the-shelf, resource-heavy technology deployed just because it exists.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Commitments -->
+    <section class="commitments" aria-labelledby="commitments-h2">
+      <div class="commitments-inner">
+        <div class="commitments-hd will-reveal">
+          <span class="eyebrow">Our Core Commitments</span>
+          <h2 id="commitments-h2" class="section-h">Develop People.<br>Customize Tools.</h2>
+          <hr class="rule rule-center">
+        </div>
+
+        <div class="cards">
+          <article class="card will-reveal" tabindex="0" aria-labelledby="c1-title">
+            <p class="card-eyebrow">People &amp; Development</p>
+            <h3 id="c1-title" class="card-title">Developing leaders and teams for successful AI adoption.</h3>
+            <p class="card-body">The adoption gap is real — tools fail when people aren't brought along. AI deployment without proper training and change management is like giving someone a jet and hoping they can fly it. We develop your leadership and workforce before, during, and after a technology deployment to build buy-in, confidence, and inspiration. Every session is customized to your organization's mission, culture, and readiness.</p>
+          </article>
+
+          <article class="card will-reveal" tabindex="0" aria-labelledby="c2-title">
+            <p class="card-eyebrow">Technology &amp; AI</p>
+            <h3 id="c2-title" class="card-title">Building the right tools that fit best to magnify your organization's impact.</h3>
+            <p class="card-body">Because we start by understanding your organization, your process pain points, and what matters most to you, all our tool recommendations and builds are based on returning the most value to your organization. From simple quick-win automations to complex integrations, every tool is customized to ensure the highest return on investment specifically for your organization. Whichever tools fit best, we'll always be genuine with you and your teams.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" aria-labelledby="about-h2">
+      <div class="about-grid will-reveal">
+        <div class="about-sticky">
+          <h2 id="about-h2" class="section-h">About Us</h2>
+          <hr class="rule">
+        </div>
+        <div>
+          <p class="about-body">
+            Philip Kum brings over 17 years at non-profits and mission-driven organizations, combining deep organizational development expertise with hands-on AI experience. His background in leadership development, mentoring, process improvement, and organizational change gives him the tools — and the empathy — to truly understand your organization and prepare your teams for AI adoption. As an early adopter of AI, Philip has successfully deployed customized tools across multiple organizations. His passion is simple: helping good people who do good work succeed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact" aria-labelledby="contact-h2">
+      <div class="contact-inner will-reveal">
+        <span class="eyebrow">Get In Touch</span>
+        <h2 id="contact-h2" class="section-h">Start a conversation.</h2>
+        <p class="contact-intro">We want to learn about the good work you do. Schedule a free call with us.</p>
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfaGLu6ghc3hOGXg5pwP_MHz1UnAQcawplHj0ah-Qxsd5oCOw/viewform" class="btn btn-solid" target="_blank" rel="noopener noreferrer">Schedule A Call</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Magnify Impact</span>
+      <div class="footer-right">
+        <a href="mailto:philip@magnifyimpact.ai" class="footer-email">philip@magnifyimpact.ai</a>
+        <span class="footer-copy">© 2026 Magnify Impact. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- B — Scroll-triggered reveals -->
+  <script>
+    (function () {
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      var els = document.querySelectorAll('.will-reveal');
+
+      // Apply initial hidden state after first paint — no flash of invisible content
+      requestAnimationFrame(function () {
+        els.forEach(function (el) { el.style.opacity = '0'; el.style.transform = 'translateY(26px)'; });
+      });
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '';
+            entry.target.style.transform = '';
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      els.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>
