@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -524,6 +524,58 @@
       border: none;
     }
 
+    textarea {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--charcoal);
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1.1rem;
+      outline: none;
+      border-radius: 6px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(45,106,79,0.10);
+    }
+
+    textarea::placeholder { color: rgba(31,31,31,0.28); }
+
+    .field-err {
+      font-size: 0.78rem;
+      color: #C0392B;
+      min-height: 1.1rem;
+      display: block;
+    }
+
+    .field-optional {
+      font-weight: 400;
+      font-size: 0.72rem;
+      color: var(--charcoal-dim);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .form-privacy {
+      font-size: 0.75rem;
+      color: var(--charcoal-dim);
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    .form-status {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: var(--green);
+      text-align: center;
+      font-style: italic;
+    }
+
     /* ── Footer ── */
     footer {
       border-top: 1px solid var(--border);
@@ -712,7 +764,64 @@
         <h2 id="contact-h2" class="section-h">Start a conversation.</h2>
         <p class="contact-intro">We want to learn about the good work you do. Schedule a free call with us.</p>
 
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfaGLu6ghc3hOGXg5pwP_MHz1UnAQcawplHj0ah-Qxsd5oCOw/viewform" class="btn btn-solid" target="_blank" rel="noopener noreferrer">Schedule A Call</a>
+        <form id="contact-form" novalidate>
+
+          <!-- Honeypot: hidden from humans, bots fill it in -->
+          <div style="display:none" aria-hidden="true">
+            <label for="cf-website">Website</label>
+            <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name"
+                   autocomplete="name"
+                   aria-required="true"
+                   aria-describedby="cf-name-err"
+                   placeholder="Your name"
+                   required>
+            <span id="cf-name-err" class="field-err" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email"
+                   autocomplete="email"
+                   aria-required="true"
+                   aria-describedby="cf-email-err"
+                   placeholder="you@example.com"
+                   required>
+            <span id="cf-email-err" class="field-err" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="field">
+            <label for="cf-org">Organization</label>
+            <input type="text" id="cf-org" name="org"
+                   autocomplete="organization"
+                   aria-required="true"
+                   aria-describedby="cf-org-err"
+                   placeholder="Your organization"
+                   required>
+            <span id="cf-org-err" class="field-err" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="field">
+            <label for="cf-message">
+              Message <span class="field-optional">(optional)</span>
+            </label>
+            <textarea id="cf-message" name="message" rows="5"
+                      placeholder="Tell us more about your organization or how we can help."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-solid form-btn">Schedule A Call</button>
+
+          <p class="form-privacy">
+            We'll only use your information to follow up with you. We never share it.
+          </p>
+
+        </form>
+
+        <p class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1" style="display:none;"></p>
       </div>
     </section>
 
@@ -728,6 +837,98 @@
       </div>
     </div>
   </footer>
+
+  <!-- C — Contact form submission -->
+  <script>
+    (function () {
+      var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyioecVnguw6wgW42zc322RECQMfCRNNXQkrn_xAdF8oK7AYt-POH3ahEATFySAC5n1/exec';
+
+      var form   = document.getElementById('contact-form');
+      var status = document.getElementById('form-status');
+      if (!form) return;
+
+      var errEls = {
+        name:  document.getElementById('cf-name-err'),
+        email: document.getElementById('cf-email-err'),
+        org:   document.getElementById('cf-org-err')
+      };
+
+      function clearErrors() {
+        Object.keys(errEls).forEach(function (k) { errEls[k].textContent = ''; });
+        form.querySelectorAll('[aria-invalid]').forEach(function (el) {
+          el.removeAttribute('aria-invalid');
+        });
+      }
+
+      function validate() {
+        var ok    = true;
+        var name  = document.getElementById('cf-name');
+        var email = document.getElementById('cf-email');
+        var org   = document.getElementById('cf-org');
+
+        if (!name.value.trim()) {
+          errEls.name.textContent = 'Please enter your name.';
+          name.setAttribute('aria-invalid', 'true');
+          ok = false;
+        }
+        if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+          errEls.email.textContent = 'Please enter a valid email address.';
+          email.setAttribute('aria-invalid', 'true');
+          ok = false;
+        }
+        if (!org.value.trim()) {
+          errEls.org.textContent = 'Please enter your organization.';
+          org.setAttribute('aria-invalid', 'true');
+          ok = false;
+        }
+        return ok;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearErrors();
+
+        if (!validate()) {
+          var first = form.querySelector('[aria-invalid="true"]');
+          if (first) first.focus();
+          return;
+        }
+
+        var btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        status.style.display = 'none';
+
+        var controller = new AbortController();
+        var timer = setTimeout(function () { controller.abort(); }, 10000);
+
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          body:   new URLSearchParams(new FormData(form)),
+          signal: controller.signal
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (json) {
+            clearTimeout(timer);
+            if (json.status === 'ok') {
+              status.textContent  = 'Thanks for contacting us — we’ll connect with you soon!';
+              status.style.display = 'block';
+              status.focus();
+            } else {
+              throw new Error('script error');
+            }
+          })
+          .catch(function () {
+            clearTimeout(timer);
+            btn.disabled    = false;
+            btn.textContent = 'Schedule A Call';
+            status.textContent  = 'Something went wrong — please email philip@magnifyimpact.ai directly.';
+            status.style.display = 'block';
+            status.focus();
+          });
+      });
+    })();
+  </script>
 
   <!-- B — Scroll-triggered reveals -->
   <script>
