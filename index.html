@@ -957,9 +957,11 @@
           .then(function (r) { return r.json(); })
           .then(function (json) {
             clearTimeout(timer);
-            if (json.status === 'ok') {
-              status.textContent  = 'Thanks for contacting us — we’ll connect with you soon!';
-              status.style.display = 'block';
+            if (json.status === ‘ok’) {
+              btn.disabled    = false;
+              btn.textContent = "Let’s Connect";
+              status.textContent  = ‘Thanks for contacting us — we’ll connect with you soon!’;
+              status.style.display = ‘block’;
               status.focus();
             } else {
               throw new Error('script error');
