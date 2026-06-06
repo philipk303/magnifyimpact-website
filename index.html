@@ -92,25 +92,65 @@
 
     .nav-wordmark {
       display: flex;
-      align-items: baseline;
-      gap: 0.35rem;
+      align-items: center;
+      gap: 0.4rem;
       text-decoration: none;
     }
 
-    .nav-wordmark .wm-small {
+    .nav-lm-magnify {
       font-family: 'Inter', sans-serif;
       font-weight: 300;
-      font-size: 0.62rem;
+      font-size: 0.48rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--charcoal-mid);
     }
 
-    .nav-wordmark .wm-large {
+    .nav-lm-ring {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-lm-ring::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(145deg, var(--green-dark) 0%, var(--green-light) 100%);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+    }
+
+    .nav-lm-ring::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, rgba(45,106,79,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .nav-lm-impact {
       font-family: 'DM Serif Display', serif;
       font-style: italic;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
+      font-weight: 400;
       color: var(--charcoal);
+      letter-spacing: -0.01em;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+      transform: translateX(-0.12em);
     }
 
     /* ── Buttons ── */
@@ -259,6 +299,7 @@
       line-height: 1;
       position: relative;
       z-index: 1;
+      transform: translateX(-0.12em);
     }
 
     .hero-headline {
@@ -648,12 +689,16 @@
     }
 
     @media (max-width: 560px) {
-      .hero { padding: 6rem 1.5rem 5rem; }
+      .hero { padding: 2.5rem 1.5rem 4rem; }
       .lm-magnify { font-size: 1.15rem; }
       .lm-impact { font-size: 2.15rem; }
       .lm-impact-ring { width: 120px; height: 120px; }
       .logo-mark { gap: 0.6rem; }
-      .nav-inner { padding: 1rem 1.5rem; }
+      .nav-inner { padding: 0.85rem 1.25rem; }
+      .nav-cta { font-size: 0.68rem; padding: 0.42rem 0.95rem; letter-spacing: 0.06em; }
+      .nav-lm-magnify { display: none; }
+      .nav-lm-ring { width: 44px; height: 44px; }
+      .nav-lm-impact { font-size: 0.72rem; }
       .approach, .commitments, .about, .contact { padding: 5rem 1.5rem; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
     }
@@ -668,10 +713,12 @@
   <nav aria-label="Site navigation">
     <div class="nav-inner">
       <a href="#" class="nav-wordmark" aria-label="Magnify Impact home">
-        <span class="wm-small">magnify</span>
-        <span class="wm-large">IMPACT</span>
+        <span class="nav-lm-magnify">magnify</span>
+        <div class="nav-lm-ring">
+          <span class="nav-lm-impact">IMPACT</span>
+        </div>
       </a>
-      <a href="#contact" class="nav-cta">Schedule A Call</a>
+      <a href="#contact" class="nav-cta">Let's Connect</a>
     </div>
   </nav>
 
@@ -698,7 +745,7 @@
         We want to learn about the good work you do, and how we can help.
       </p>
 
-      <a href="#contact" class="btn btn-solid fade-up d5">Schedule A Call</a>
+      <a href="#contact" class="btn btn-solid fade-up d5">Let's Connect</a>
     </section>
 
     <!-- Our Approach -->
@@ -813,7 +860,7 @@
                       placeholder="Tell us more about your organization or how we can help."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-solid form-btn">Schedule A Call</button>
+          <button type="submit" class="btn btn-solid form-btn">Let's Connect</button>
 
           <p class="form-privacy">
             We'll only use your information to follow up with you. We never share it.
@@ -921,7 +968,7 @@
           .catch(function () {
             clearTimeout(timer);
             btn.disabled    = false;
-            btn.textContent = 'Schedule A Call';
+            btn.textContent = "Let's Connect";
             status.textContent  = 'Something went wrong — please email philip@magnifyimpact.ai directly.';
             status.style.display = 'block';
             status.focus();
