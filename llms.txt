@@ -1,0 +1,27 @@
+# Magnify Impact
+
+> AI consulting and adoption for mission-driven non-profits and small businesses in the San Francisco Bay Area. People-first: we develop leaders and teams, then deploy customized tools that free staff time for the mission.
+
+Magnify Impact helps small non-profits (501c3s) and small businesses adopt AI the right way. Most small organizations don't need enterprise AI — they need right-sized tools and the training and change management to make them stick. We sell outcomes, not technology: time saved, increased outreach, higher quality of service.
+
+## Core Commitments
+
+- **Develop People**: The adoption gap is real — tools fail when people aren't brought along. We develop leadership and staff before, during, and after any technology deployment, with training customized to each organization's mission, culture, and readiness.
+- **Customize Tools**: We start by understanding the organization, its process pain points, and what matters most to it. Every recommendation and build is grounded in the organization's values and measured in mission impact as well as ROI.
+
+## How we work
+
+1. Understand the organization, mission, and people first
+2. Develop and inspire leaders and teams (training and change management)
+3. Deploy customized, right-sized tools — from simple automations that free hours weekly to more complex integrations
+4. For complex or higher-risk work: paid discovery and honest advice, including referrals to trusted implementation partners when the build isn't ours to own
+
+## Founder
+
+Philip Kum — over 17 years at non-profits and mission-driven organizations; background in organizational development, leadership development, and hands-on AI deployment.
+
+## Contact
+
+- Website: https://magnifyimpact.ai/
+- Email: philip@magnifyimpact.ai
+- Service area: San Francisco Bay Area (remote-friendly)

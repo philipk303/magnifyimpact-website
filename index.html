@@ -3,9 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Magnify Impact — Coming Soon</title>
-  <meta name="description" content="Magnify Impact is putting the finishing touches on our launch. Check back soon.">
-  <meta name="robots" content="noindex">
+  <title>Magnify Impact — AI Consulting & Adoption for Non-Profits | SF Bay Area</title>
+  <meta name="description" content="AI consulting for Bay Area non-profits and small businesses — people-first training, change management, and customized tools that free your team's time for the mission.">
+  <link rel="canonical" href="https://magnifyimpact.ai/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%232D6A4F' stroke-width='4'/%3E%3C/svg%3E">
+
+  <!-- Social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Magnify Impact">
+  <meta property="og:title" content="AI adoption that puts your mission and people first.">
+  <meta property="og:description" content="AI consulting for Bay Area non-profits and small businesses — people-first training, change management, and customized tools that free your team's time for the mission.">
+  <meta property="og:url" content="https://magnifyimpact.ai/">
+  <meta property="og:image" content="https://magnifyimpact.ai/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI adoption that puts your mission and people first.">
+  <meta name="twitter:description" content="AI consulting for Bay Area non-profits and small businesses — people-first training, change management, and customized tools that free your team's time for the mission.">
+  <meta name="twitter:image" content="https://magnifyimpact.ai/og-image.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -500,6 +515,69 @@
       line-height: 1.9;
     }
 
+    /* ── FAQ ── */
+    .faq {
+      padding: 8rem 2.5rem;
+    }
+
+    .faq-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 5.5rem;
+      align-items: start;
+    }
+
+    .faq-sticky {
+      position: sticky;
+      top: 6rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 1.4rem 0;
+      font-weight: 500;
+      font-size: 1.02rem;
+      color: var(--charcoal);
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: '+';
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      line-height: 1;
+      color: var(--green);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-item .faq-a {
+      padding: 0 2.5rem 1.5rem 0;
+      color: var(--charcoal-mid);
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
     /* ── Contact ── */
     .contact {
       padding: 8rem 2.5rem;
@@ -681,11 +759,12 @@
     /* ── Responsive ── */
     @media (max-width: 900px) {
       .approach-grid,
-      .about-grid {
+      .about-grid,
+      .faq-grid {
         grid-template-columns: 1fr;
         gap: 2.5rem;
       }
-      .approach-sticky, .about-sticky { position: static; }
+      .approach-sticky, .about-sticky, .faq-sticky { position: static; }
       .cards { grid-template-columns: 1fr; }
     }
 
@@ -700,10 +779,117 @@
       .nav-lm-magnify { display: none; }
       .nav-lm-ring { width: 44px; height: 44px; }
       .nav-lm-impact { font-size: 0.72rem; }
-      .approach, .commitments, .about, .contact { padding: 5rem 1.5rem; }
+      .approach, .commitments, .about, .faq, .contact { padding: 5rem 1.5rem; }
+      .faq-item .faq-a { padding-right: 0; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
     }
   </style>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://magnifyimpact.ai/#organization",
+        "name": "Magnify Impact",
+        "url": "https://magnifyimpact.ai/",
+        "email": "philip@magnifyimpact.ai",
+        "description": "AI consulting and adoption for mission-driven non-profits and small businesses. People-first training, change management, and customized tools that free your team's time for the mission.",
+        "slogan": "AI adoption that puts your mission and people first.",
+        "areaServed": {
+          "@type": "Place",
+          "name": "San Francisco Bay Area"
+        },
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Non-profit organizations and small businesses"
+        },
+        "knowsAbout": [
+          "AI adoption",
+          "AI consulting for non-profits",
+          "Change management",
+          "Organizational development",
+          "Workflow automation",
+          "AI training"
+        ],
+        "founder": { "@id": "https://magnifyimpact.ai/#founder" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://magnifyimpact.ai/#founder",
+        "name": "Philip Kum",
+        "jobTitle": "Founder",
+        "worksFor": { "@id": "https://magnifyimpact.ai/#organization" },
+        "email": "philip@magnifyimpact.ai",
+        "description": "Founder of Magnify Impact with over 17 years at non-profits and mission-driven organizations, combining organizational development expertise with hands-on AI experience."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://magnifyimpact.ai/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why does AI matter for small non-profits and small businesses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Because your scarcest resource is time. Larger organizations have whole teams for grant reporting, data entry, and scheduling — small organizations do the same work with a fraction of the staff. Used thoughtfully, AI hands hours back every week, so your people can spend them on the mission instead of the mechanics."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there an AI divide between large and small organizations?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — and it's growing. Large enterprises are adopting AI quickly, while most small non-profits and businesses haven't had the time, budget, or guidance to start, and that gap compounds every year. The good news: today's tools no longer require enterprise budgets, and small organizations can close the distance faster than they think."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I know where my organization stands with AI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most organizations sit somewhere on a scale — from \"haven't started,\" to a few individuals experimenting, to organization-wide adoption with training and guardrails. Knowing where you stand determines the right next step, and skipping steps is how tools end up unused. That honest assessment is where every engagement of ours begins."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will AI replace my staff?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "That's not the goal, and it's not what we build toward. The goal is removing the repetitive mechanics that keep good people from the work they were hired to do. Adoption succeeds when your team is trained, included, and honestly heard — including their fears and criticisms of AI, which are part of the conversation, not a problem to manage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What about donor and client data privacy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We treat it as non-negotiable. We help you set a clear AI use policy, choose tools with appropriate data protections, and train staff on what should — and should never — go into an AI system. Nothing touches sensitive data without your explicit decision."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does working with Magnify Impact look like?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It starts with a free conversation about your mission and where your team's time actually goes. From there we identify the highest-impact opportunities, develop your people first, then build and deploy right-sized tools — with training, so the tools keep working after we step back."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does it cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Engagements are right-sized, just like the tools. Simple, high-return automations are small scoped projects; complex or higher-risk work starts with paid discovery and honest advice — including when the best answer is a simpler tool, or a referral to someone better suited to build it. The first conversation is always free."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -719,6 +905,7 @@
           <span class="nav-lm-impact">IMPACT</span>
         </div>
       </a>
+      <a href="#contact" class="nav-cta">Let's Connect</a>
     </div>
   </nav>
 
@@ -734,11 +921,291 @@
       </div>
 
       <h1 id="hero-h1" class="hero-headline fade-up d2">
-        Coming soon.
+        AI adoption that puts your mission and people first.
       </h1>
+
+      <p class="hero-sub fade-up d3">
+        We help mission-driven non-profits and small businesses adopt AI the right way — understanding your organization first, developing and inspiring your teams about AI, then deploying customized tools that fit and accelerate your mission.
+      </p>
+
+      <p class="hero-callout fade-up d4">
+        We want to learn about the good work you do, and how we can help.
+      </p>
+
+      <a href="#contact" class="btn btn-solid fade-up d5">Let's Connect</a>
+    </section>
+
+    <!-- Our Approach -->
+    <section class="approach" aria-labelledby="approach-h2">
+      <div class="approach-grid will-reveal">
+        <div class="approach-sticky">
+          <span class="eyebrow">Our Approach</span>
+          <h2 id="approach-h2" class="section-h">AI for all.<br>Right-sized for you.</h2>
+          <hr class="rule">
+        </div>
+        <div>
+          <p class="approach-body">
+            Most non-profits and small businesses do not have the resources or bandwidth to deploy AI enterprise solutions, and most AI enterprise solutions do not focus on the proper change management and organizational development needed to inspire teams. Our process starts by understanding your organization, your mission, and your people. Then we develop your leaders and teams, and then deploy the right tools — customized to reach the outcomes you want, e.g. time saved, increased outreach, increase quality of service.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Commitments -->
+    <section class="commitments" aria-labelledby="commitments-h2">
+      <div class="commitments-inner">
+        <div class="commitments-hd will-reveal">
+          <span class="eyebrow">Our Core Commitments</span>
+          <h2 id="commitments-h2" class="section-h">Develop People.<br>Customize Tools.</h2>
+          <hr class="rule rule-center">
+        </div>
+
+        <div class="cards">
+          <article class="card will-reveal" tabindex="0" aria-labelledby="c1-title">
+            <p class="card-eyebrow">People &amp; Development</p>
+            <h3 id="c1-title" class="card-title">Developing leaders and teams for successful AI adoption.</h3>
+            <p class="card-body">The adoption gap is real — tools fail when people aren't brought along. AI deployment without proper training and change management is like giving someone a jet and hoping they can fly it. We develop your leadership and workforce before, during, and after a technology deployment to build buy-in, confidence, and inspiration. Every session is customized to your organization's mission, culture, and readiness.</p>
+          </article>
+
+          <article class="card will-reveal" tabindex="0" aria-labelledby="c2-title">
+            <p class="card-eyebrow">Customized for Results</p>
+            <h3 id="c2-title" class="card-title">Building the right tools that fit best to magnify your organization's impact.</h3>
+            <p class="card-body">Because we start by understanding your organization, your process pain points, and what matters most to you, all our tool recommendations and builds are based on the values of your organization. From simple automations that free hours weekly to complex integrations that increase your quality of service, every tool is customized to ensure the highest return on investment <em>and mission impact</em> specifically for your organization.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" aria-labelledby="about-h2">
+      <div class="about-grid will-reveal">
+        <div class="about-sticky">
+          <h2 id="about-h2" class="section-h">About Us</h2>
+          <hr class="rule">
+        </div>
+        <div>
+          <p class="about-body">
+            Philip Kum brings over 17 years at non-profits and mission-driven organizations, combining deep organizational development expertise with hands-on AI experience. His background in leadership development, mentoring, process improvement, and organizational change gives him the tools — and the empathy — to truly understand your organization and prepare your teams for AI adoption. As an early adopter of AI, Philip has successfully deployed customized tools across multiple organizations. His passion is simple: helping good people who do good work succeed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq" aria-labelledby="faq-h2">
+      <div class="faq-grid will-reveal">
+        <div class="faq-sticky">
+          <span class="eyebrow">Common Questions</span>
+          <h2 id="faq-h2" class="section-h">Honest answers,<br>no hype.</h2>
+          <hr class="rule">
+        </div>
+        <div>
+          <details class="faq-item">
+            <summary>Why does AI matter for small non-profits and small businesses?</summary>
+            <p class="faq-a">Because your scarcest resource is time. Larger organizations have whole teams for grant reporting, data entry, and scheduling — small organizations do the same work with a fraction of the staff. Used thoughtfully, AI hands hours back every week, so your people can spend them on the mission instead of the mechanics.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is there an AI divide between large and small organizations?</summary>
+            <p class="faq-a">Yes — and it's growing. Large enterprises are adopting AI quickly, while most small non-profits and businesses haven't had the time, budget, or guidance to start, and that gap compounds every year. The good news: today's tools no longer require enterprise budgets, and small organizations can close the distance faster than they think.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do I know where my organization stands with AI?</summary>
+            <p class="faq-a">Most organizations sit somewhere on a scale — from "haven't started," to a few individuals experimenting, to organization-wide adoption with training and guardrails. Knowing where you stand determines the right next step, and skipping steps is how tools end up unused. That honest assessment is where every engagement of ours begins.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Will AI replace my staff?</summary>
+            <p class="faq-a">That's not the goal, and it's not what we build toward. The goal is removing the repetitive mechanics that keep good people from the work they were hired to do. Adoption succeeds when your team is trained, included, and honestly heard — including their fears and criticisms of AI, which are part of the conversation, not a problem to manage.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What about donor and client data privacy?</summary>
+            <p class="faq-a">We treat it as non-negotiable. We help you set a clear AI use policy, choose tools with appropriate data protections, and train staff on what should — and should never — go into an AI system. Nothing touches sensitive data without your explicit decision.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What does working with Magnify Impact look like?</summary>
+            <p class="faq-a">It starts with a free conversation about your mission and where your team's time actually goes. From there we identify the highest-impact opportunities, develop your people first, then build and deploy right-sized tools — with training, so the tools keep working after we step back.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How much does it cost?</summary>
+            <p class="faq-a">Engagements are right-sized, just like the tools. Simple, high-return automations are small scoped projects; complex or higher-risk work starts with paid discovery and honest advice — including when the best answer is a simpler tool, or a referral to someone better suited to build it. The first conversation is always free.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact" aria-labelledby="contact-h2">
+      <div class="contact-inner will-reveal">
+        <span class="eyebrow">Get In Touch</span>
+        <h2 id="contact-h2" class="section-h">Start a conversation.</h2>
+        <p class="contact-intro">We want to learn about the good work you do. Schedule a free call with us.</p>
+
+        <form id="contact-form" novalidate>
+
+          <!-- Honeypot: hidden from humans, bots fill it in -->
+          <div style="display:none" aria-hidden="true">
+            <label for="cf-website">Website</label>
+            <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name"
+                   autocomplete="name"
+                   aria-required="true"
+                   aria-describedby="cf-name-err"
+                   placeholder="Your name"
+                   required>
+            <span id="cf-name-err" class="field-err" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email"
+                   autocomplete="email"
+                   aria-required="true"
+                   aria-describedby="cf-email-err"
+                   placeholder="you@example.com"
+                   required>
+            <span id="cf-email-err" class="field-err" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="field">
+            <label for="cf-org">Organization</label>
+            <input type="text" id="cf-org" name="org"
+                   autocomplete="organization"
+                   aria-required="true"
+                   aria-describedby="cf-org-err"
+                   placeholder="Your organization"
+                   required>
+            <span id="cf-org-err" class="field-err" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="field">
+            <label for="cf-message">
+              Message <span class="field-optional">(optional)</span>
+            </label>
+            <textarea id="cf-message" name="message" rows="5"
+                      placeholder="Tell us more about your organization or how we can help."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-solid form-btn">Let's Connect</button>
+
+          <p class="form-privacy">
+            We'll only use your information to follow up with you. We never share it.
+          </p>
+
+        </form>
+
+        <p class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1" style="display:none;"></p>
+      </div>
     </section>
 
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Magnify Impact</span>
+      <div class="footer-right">
+        <a href="mailto:philip@magnifyimpact.ai" class="footer-email">philip@magnifyimpact.ai</a>
+        <span class="footer-copy">© 2026 Magnify Impact. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- C — Contact form submission -->
+  <script>
+    (function () {
+      var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyioecVnguw6wgW42zc322RECQMfCRNNXQkrn_xAdF8oK7AYt-POH3ahEATFySAC5n1/exec';
+
+      var form   = document.getElementById('contact-form');
+      var status = document.getElementById('form-status');
+      if (!form) return;
+
+      var errEls = {
+        name:  document.getElementById('cf-name-err'),
+        email: document.getElementById('cf-email-err'),
+        org:   document.getElementById('cf-org-err')
+      };
+
+      function clearErrors() {
+        Object.keys(errEls).forEach(function (k) { errEls[k].textContent = ''; });
+        form.querySelectorAll('[aria-invalid]').forEach(function (el) {
+          el.removeAttribute('aria-invalid');
+        });
+      }
+
+      function validate() {
+        var ok    = true;
+        var name  = document.getElementById('cf-name');
+        var email = document.getElementById('cf-email');
+        var org   = document.getElementById('cf-org');
+
+        if (!name.value.trim()) {
+          errEls.name.textContent = 'Please enter your name.';
+          name.setAttribute('aria-invalid', 'true');
+          ok = false;
+        }
+        if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+          errEls.email.textContent = 'Please enter a valid email address.';
+          email.setAttribute('aria-invalid', 'true');
+          ok = false;
+        }
+        if (!org.value.trim()) {
+          errEls.org.textContent = 'Please enter your organization.';
+          org.setAttribute('aria-invalid', 'true');
+          ok = false;
+        }
+        return ok;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearErrors();
+
+        if (!validate()) {
+          var first = form.querySelector('[aria-invalid="true"]');
+          if (first) first.focus();
+          return;
+        }
+
+        var btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        status.style.display = 'none';
+
+        var controller = new AbortController();
+        var timer = setTimeout(function () { controller.abort(); }, 10000);
+
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          body:   new URLSearchParams(new FormData(form)),
+          signal: controller.signal
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (json) {
+            clearTimeout(timer);
+            if (json.status === ‘ok’) {
+              btn.disabled    = false;
+              btn.textContent = "Let’s Connect";
+              status.textContent  = ‘Thanks for contacting us — we’ll connect with you soon!’;
+              status.style.display = ‘block’;
+              status.focus();
+            } else {
+              throw new Error('script error');
+            }
+          })
+          .catch(function () {
+            clearTimeout(timer);
+            btn.disabled    = false;
+            btn.textContent = "Let's Connect";
+            status.textContent  = 'Something went wrong — please email philip@magnifyimpact.ai directly.';
+            status.style.display = 'block';
+            status.focus();
+          });
+      });
+    })();
+  </script>
 
   <!-- B — Scroll-triggered reveals -->
   <script>

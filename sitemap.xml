@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://magnifyimpact.ai/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!--
+    Article pattern — add one <url> block per published article:
+    <url>
+      <loc>https://magnifyimpact.ai/articles/SLUG/</loc>
+      <lastmod>YYYY-MM-DD</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.8</priority>
+    </url>
+    Reserved slugs: why-ai-matters-for-nonprofits, the-growing-ai-divide, ai-evolutionary-scale
+  -->
+</urlset>

@@ -1,0 +1,24 @@
+# magnifyimpact.ai — all crawlers welcome, including AI assistants
+User-agent: *
+Allow: /
+
+# AI crawlers, explicitly welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://magnifyimpact.ai/sitemap.xml
