@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magnify Impact — Workbook</title>
+<meta name="robots" content="noindex">
+<style>
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: flex; align-items: center; justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #f8f5f0; color: #222; text-align: center; padding: 2em;
+    box-sizing: border-box;
+  }
+  main { max-width: 28em; }
+  p { font-size: 1.1em; line-height: 1.5; }
+</style>
+</head>
+<body>
+<main>
+  <p id="msg">Opening your workbook&hellip;</p>
+  <noscript>
+    <p>Please enable JavaScript, or ask your facilitator for the direct link they shared.</p>
+  </noscript>
+</main>
+<script>
+  // Friendly, memorable URL for the QR code / spoken URL on the AI-orientation slides
+  // (Training Materials/ai-orientation-1hr-deck/) — the actual workbook lives on Apps
+  // Script and needs a "?s=SESSIONCODE" query param the deck can't bake into a short
+  // URL people can read off a projector. This page's only job is to forward that param
+  // through unchanged. See .claude/skills/workshop-session/ (session_manager.py) for
+  // what writes the session code into the QR that points here.
+  //
+  // GitHub Pages redirects "/workbook" (no trailing slash) to "/workbook/" via a 301
+  // that PRESERVES the query string — verified live 2026-08-21 against another GitHub
+  // Pages site (jekyllrb.com/docs -> jekyllrb.com/docs/, query intact) before relying on
+  // it here. So both "magnifyimpact.ai/workbook?s=CODE" and the "/workbook/?s=CODE"
+  // form reach this page with the code intact.
+  //
+  // Keep this in sync with WORKBOOK_EXEC_URL in
+  // .claude/skills/workshop-session/scripts/session_manager.py — if the workbook is
+  // ever redeployed to a new Apps Script URL, update BOTH.
+  var WORKBOOK_EXEC_URL = "https://script.google.com/macros/s/AKfycbwhysB9l2Z-XghP0AEyFBIKMzG7yjjHGIdUVzUfGYplxJY6dvOlLLKBOGgAJvOd3411Eg/exec";
+
+  var code = new URLSearchParams(window.location.search).get('s');
+  if (code) {
+    window.location.replace(WORKBOOK_EXEC_URL + '?s=' + encodeURIComponent(code));
+  } else {
+    document.getElementById('msg').textContent =
+      "This link is missing a session code. Ask your facilitator for today's QR code or link.";
+  }
+</script>
+</body>
+</html>
