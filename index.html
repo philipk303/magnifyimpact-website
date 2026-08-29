@@ -241,6 +241,62 @@
       }
     }
 
+    /* ── Live Workbook nav button — hidden by default, revealed by JS only while a
+       workshop session is active (see active-session.json + the script near </body>) ── */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .nav-live-btn {
+      display: none;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      background: var(--green);
+      border: 1.5px solid var(--green);
+      border-radius: 50px;
+      padding: 0.55rem 1.3rem;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-live-btn:not([hidden]) { display: inline-flex; }
+
+    .nav-live-btn:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+    }
+
+    .nav-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green-light);
+      flex-shrink: 0;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .nav-live-btn:hover {
+        background: var(--green-hover);
+        transform: scale(1.04);
+        box-shadow: 0 0 0 6px rgba(45,106,79,0.14);
+      }
+      .nav-live-dot {
+        animation: nav-live-pulse 1.7s ease-in-out infinite;
+      }
+      @keyframes nav-live-pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(82,183,136,0.65); }
+        50% { box-shadow: 0 0 0 4px rgba(82,183,136,0); }
+      }
+    }
+
     /* ── Hero ── */
     .hero {
       padding: 1.5rem 2.5rem 5rem;
@@ -905,7 +961,13 @@
           <span class="nav-lm-impact">IMPACT</span>
         </div>
       </a>
-      <a href="#contact" class="nav-cta">Let's Connect</a>
+      <div class="nav-actions">
+        <a id="live-workbook-btn" href="https://magnifyimpact.ai/workbook" class="nav-live-btn" hidden>
+          <span class="nav-live-dot" aria-hidden="true"></span>
+          Live Workbook
+        </a>
+        <a href="#contact" class="nav-cta">Let's Connect</a>
+      </div>
     </div>
   </nav>
 
@@ -1232,6 +1294,26 @@
       }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
       els.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+  <!-- Live Workbook nav button — shown only while a workshop session is active.
+       active-session.json is written and pushed by .claude/skills/workshop-session's
+       session_manager.py (setup/teardown); it never contains attendee data, just a
+       session code or null. Fails silently (button stays hidden) on any error. -->
+  <script>
+    (function () {
+      var btn = document.getElementById('live-workbook-btn');
+      if (!btn) return;
+      fetch('/active-session.json', { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (data && data.code) {
+            btn.href = 'https://magnifyimpact.ai/workbook?s=' + encodeURIComponent(data.code);
+            btn.hidden = false;
+          }
+        })
+        .catch(function () { /* leave hidden */ });
     })();
   </script>
 
