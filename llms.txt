@@ -1,27 +1,35 @@
 # Magnify Impact
 
-> AI consulting and adoption for mission-driven non-profits and small businesses in the San Francisco Bay Area. People-first: we develop leaders and teams, then deploy customized tools that free staff time for the mission.
+> People-first AI adoption for small mission-driven non-profits in the San Francisco Bay Area. We help good people doing good work spend less time on mechanics and more time on their mission.
 
-Magnify Impact helps small non-profits (501c3s) and small businesses adopt AI the right way. Most small organizations don't need enterprise AI — they need right-sized tools and the training and change management to make them stick. We sell outcomes, not technology: time saved, increased outreach, higher quality of service.
+Magnify Impact offers three customized services as a menu, with no ranked or primary service. Small businesses, solopreneurs, and non-technical professionals are also welcome. Every engagement starts by learning the organization: its mission, people, processes, and how work gets done.
+
+## Services
+
+- **Customized AI integration consulting**: Find the best value implementation options: AI integrations that deliver high ROI and mission impact.
+- **Training and organizational development**: Prepare leaders and teams for AI, with training and change management grounded in the organization's mission, culture, and readiness.
+- **Customized AI and automation builds**: Build tools and workflows around the organization's needs, values, and systems so staff can focus on the mission.
 
 ## Core Commitments
 
-- **Develop People**: The adoption gap is real — tools fail when people aren't brought along. We develop leadership and staff before, during, and after any technology deployment, with training customized to each organization's mission, culture, and readiness.
-- **Customize Tools**: We start by understanding the organization, its process pain points, and what matters most to it. Every recommendation and build is grounded in the organization's values and measured in mission impact as well as ROI.
+- **Develop People**: Bring leaders and staff along before, during, and after technology deployment. AI adoption succeeds when people have the preparation and support to use it well.
+- **Customize Tools**: Understand the organization, its process pain points, and what matters most to it. Ground recommendations and builds in its values and measure results in mission impact as well as ROI.
 
-## How we work
+## Pricing and intake
 
-1. Understand the organization, mission, and people first
-2. Develop and inspire leaders and teams (training and change management)
-3. Deploy customized, right-sized tools — from simple automations that free hours weekly to more complex integrations
-4. For complex or higher-risk work: paid discovery and honest advice, including referrals to trusted implementation partners when the build isn't ours to own
+Accessible flat fees reflect the agreed scope of each engagement. The initial intake session has no required fee; a suggested donation is welcome. It is a chance to learn about the organization and discuss where Magnify Impact can help.
 
 ## Founder
 
-Philip Kum — over 17 years at non-profits and mission-driven organizations; background in organizational development, leadership development, and hands-on AI deployment.
+Philip — background in nonprofit and mission-driven work, organizational development, leadership development, and hands-on AI deployment.
+
+## Articles
+
+- [Why Thoughtful AI Integration Strategy is Imperative at Small Non-profit and Mission-driven Organizations](https://magnifyimpact.ai/articles/thoughtful-ai-integration-strategy-small-nonprofits/): Why thoughtful integration, training, and organizational change matter for small nonprofits adopting AI. Published September 16, 2026.
 
 ## Contact
 
-- Website: https://magnifyimpact.ai/
+- [Website](https://magnifyimpact.ai/)
+- [Connect with us](https://magnifyimpact.ai/#connect)
 - Email: philip@magnifyimpact.ai
-- Service area: San Francisco Bay Area (remote-friendly)
+- Service area: San Francisco Bay Area; remote-friendly

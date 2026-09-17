@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="24 0 330 180" role="img" aria-labelledby="title" color="#123C32">
+<title id="title">Magnify Impact</title>
+<g fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"><path d="M40 42C40 22 61 7 89 9C112 10 119 25 109 46C101 65 80 76 60 70C46 66 40 56 40 42Z"/><path d="M55 88Q75 80 94 87C96 108 84 133 82 152Q80 166 67 165Q55 164 55 151Z"/></g>
+<text x="155" y="86" fill="currentColor" font-family="Bricolage Grotesque, Arial, sans-serif" font-size="51" font-weight="600" letter-spacing="-1.5">magnify</text>
+<text x="155" y="143" fill="currentColor" font-family="Bricolage Grotesque, Arial, sans-serif" font-size="51" font-weight="600" letter-spacing="-1.5">impact</text>
+</svg>
