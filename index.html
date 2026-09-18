@@ -46,6 +46,11 @@
 input::placeholder,textarea::placeholder{color:var(--muted);opacity:1}
 @media(max-width:720px){.nav{height:auto;min-height:74px;padding:9px 0}.logo{font-size:23px;gap:10px}.logo svg{width:28px;height:48px}.links{flex-wrap:wrap;justify-content:flex-end;gap:8px}.hero h1 .hero-lead{font-size:clamp(1.4rem,5.4vw,1.8rem)}.hero h1 .impact{max-width:11ch}.anchor-alias{scroll-margin-top:100px}.example{margin-right:0}.article-art{padding:26px}.principles li{gap:14px}.principles strong{min-width:90px}}
 @media(max-width:380px){.wrap{width:calc(100% - 32px)}.logo{font-size:21px;gap:8px}.logo svg{width:25px;height:44px}.links .button{font-size:14px;padding:9px 10px;gap:8px}.links{max-width:132px}.hero h1{font-size:2.65rem}.hero-actions{gap:16px}.process-ideas{padding:0 20px}.example-head,.process-intro,.example-bottom{padding-left:20px;padding-right:20px}}
+/* Outcome stays visually dominant but fits on one line at tablet and desktop widths. */
+.hero h1 .impact{font-size:clamp(2.75rem,3.7vw,3.25rem);max-width:none;white-space:nowrap}
+@media(max-width:1000px){.hero h1 .impact{font-size:clamp(2.65rem,5vw,3rem)}}
+@media(min-width:721px) and (max-width:850px){.hero-grid{grid-template-columns:1fr}}
+@media(max-width:720px){.hero h1 .impact{white-space:normal}}
 </style>
 <script type="application/ld+json">
 {
