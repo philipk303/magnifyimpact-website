@@ -35,7 +35,7 @@
       const result = await response.json();
       if (result.status !== 'ok') throw new Error('Submission failed');
       form.reset();
-      status.textContent = "Thanks for contacting us — we'll connect with you soon!";
+      status.textContent = "Thanks — your message was received. Philip will follow up with you by email.";
     } catch (error) {
       status.textContent = "We couldn't confirm delivery. Your message may have reached us. Please email philip@magnifyimpact.ai if you need help, rather than submitting again.";
     } finally {
@@ -43,7 +43,7 @@
       sending = false;
       form.removeAttribute('aria-busy');
       button.disabled = false;
-      button.textContent = 'Connect with us ↗';
+      button.innerHTML = 'Connect with us <span aria-hidden="true">↗</span>';
       status.focus();
     }
   });
